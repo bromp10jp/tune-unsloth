@@ -7,7 +7,7 @@ from trl import SFTTrainer, SFTConfig
 max_seq_length = 2048 # シーケンス長を設定
 model_name = vars().get('MODEL', 'unsloth/Llama-3.2-3B-Instruct')
 BASE = vars().get('BASE', './')
-TUNE_DATA_FILE = vars().get('TUNE_DATA_FILE', 'out_tunedata_travel.jsonl')
+TUNE_DATA_FILE = vars().get('TUNE_DATA_FILE', 'sample_dataset.jsonl')
 DATA_FILE = BASE + TUNE_DATA_FILE
 save_dir = BASE + "finetuned_model"
 
