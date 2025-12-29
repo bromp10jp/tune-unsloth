@@ -87,7 +87,7 @@ trainer = SFTTrainer(
         # その他
         fp16 = use_fp16,
         bf16 = use_bf16,
-        output_dir = "outputs",
+        output_dir = BASE + "outputs",
         report_to=[],
         seed = 3407,                  # 乱数シード（指定しないとランダム）
     ),

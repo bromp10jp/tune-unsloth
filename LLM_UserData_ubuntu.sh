@@ -40,8 +40,8 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -U pip
 git clone https://github.com/bromp10jp/tune-unsloth.git
-#cd tune-unsloth
-#pip install -U -r requirements.txt
+cd tune-unsloth
+pip install -U -r requirements.txt
 #python unsloth_learn.py
 #python unsloth_merge.py
 deactivate
