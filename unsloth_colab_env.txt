@@ -1,0 +1,16 @@
+import os
+from google.colab import drive
+
+TUNE_DATA_FILE = "sample_dataset.jsonl"
+MODEL = "unsloth/Llama-3.2-3B-Instruct"
+#MODEL = "meta-llama/Llama-3.2-3B-Instruct"  # こちらはMeta公式モデル（要HuggingFaceアカウント承認）
+BASE = "/content/drive/My Drive/fine-tune/"
+drive.mount('/content/drive')
+os.makedirs(BASE, exist_ok=True)
+with open(f'{BASE}sample.txt', 'w') as f:
+    f.write('Hello World!')   # 動作確認用ファイル作成
+print("Googleドライブマウント完了")
+
+# ライブラリのインストール（githubから最新のunslothをインストール）
+!pip install -qqq --upgrade --no-cache-dir "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
+print("ライブラリインストール完了")
