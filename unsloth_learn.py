@@ -2,7 +2,6 @@ import torch
 from datasets import load_dataset
 from unsloth import FastLanguageModel
 from trl import SFTTrainer, SFTConfig
-#from transformers import TrainingArguments
 
 max_seq_length = 2048 # シーケンス長を設定
 model_name = vars().get('MODEL', 'unsloth/Llama-3.2-3B-Instruct')
@@ -32,7 +31,6 @@ model, tokenizer = FastLanguageModel.from_pretrained(
 
 # JSONLの各行が {instruction, context, response}
 # 例：{"instruction": "東京観光のお薦めは？","context": "あなたは観光ガイドです", "response": "メジャー処は浅草です。"}
-# localファイルなら 'json' で読み込み
 print("教師データのロード")
 dataset = load_dataset("json", data_files=DATA_FILE, split="train").train_test_split(test_size=0.1, seed=42)
 print(dataset)
