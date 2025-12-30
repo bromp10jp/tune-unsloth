@@ -53,8 +53,8 @@ dataset = dataset.map(formatting_function)
 # LoRAアダプターの適用（Peftモデルの作成）
 model = FastLanguageModel.get_peft_model(
     model,
-    r=16,               # LoRAのランク（低い：メモリ節約、高い：性能向上、デフォルトは16）
-    lora_alpha=32,      # LoRAのスケーリングファクター（目安はrの2倍）
+    r=4,               # LoRAのランク（低い：メモリ節約、高い：性能向上、デフォルトは16）
+    lora_alpha=8,      # LoRAのスケーリングファクター（目安はrの2倍）
     lora_dropout=0.05,  # ドロップアウト率（過学習防止、0.0〜0.1程度が一般的）
     #target_modules=["q_proj","k_proj","v_proj","o_proj","gate_proj","up_proj","down_proj"],
     target_modules=["q_proj","v_proj"], # 軽量化のためQueryとValue層のみ。本来はAttentionとfeed-forward両方に適用するのが望ましい
@@ -80,7 +80,7 @@ trainer = SFTTrainer(
 
         # 最適化設定
         learning_rate = 2e-4,           # 学習率
-        logging_steps = 10,             # ログ出力頻度
+        logging_steps = 2,             # ログ出力頻度
         optim = "adamw_8bit",           # 8ビットAdamWオプティマイザを使用
         lr_scheduler_type = "cosine",   # 学習率スケジューラー(指定しないとlinear)
 
