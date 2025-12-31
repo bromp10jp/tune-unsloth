@@ -51,8 +51,8 @@ dataset = dataset.map(formatting_function)
 # LoRAアダプターの適用（Peftモデルの作成）
 model = FastLanguageModel.get_peft_model(
     model,
-    r=4,               # LoRAのランク（低い：メモリ節約、高い：性能向上、デフォルトは16）
-    lora_alpha=8,      # LoRAのスケーリングファクター（目安はrの2倍）
+    r=16,               # LoRAのランク（低い：メモリ節約、高い：性能向上、デフォルトは16）
+    lora_alpha=32,      # LoRAのスケーリングファクター（目安はrの2倍）
     lora_dropout=0.05,  # ドロップアウト率（過学習防止、0.0〜0.1程度が一般的）
     #target_modules=["q_proj","k_proj","v_proj","o_proj","gate_proj","up_proj","down_proj"],
     target_modules=["q_proj","v_proj"], # 軽量化のためQueryとValue層のみ。本来はAttentionとfeed-forward両方に適用するのが望ましい
@@ -66,11 +66,11 @@ trainer = SFTTrainer(
     eval_dataset=dataset["test"],    # 検証用データセット
     dataset_text_field="text",       # データセット内のテキストフィールド名
     max_seq_length=max_seq_length,
-    packing=True,
+    packing=False,
     args=SFTConfig(
         # バッチサイズ設定
-        per_device_train_batch_size = 2, # 各デバイスのバッチサイズ
-        gradient_accumulation_steps = 8, # 勾配蓄積ステップ数（実質的なバッチサイズ = 2 x 8 = 16）
+        per_device_train_batch_size = 1, # 各デバイスのバッチサイズ
+        gradient_accumulation_steps = 2, # 勾配蓄積ステップ数
         # 学習スケジュール
         warmup_steps = 5,               # ウォームアップステップ数
         num_train_epochs = 2,           # エポック数
