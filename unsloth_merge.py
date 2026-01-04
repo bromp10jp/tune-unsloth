@@ -4,7 +4,7 @@ from peft import PeftModel
 import os
 
 max_seq_length = 2048 # シーケンス長を設定
-model_name = vars().get('MODEL', 'unsloth/Llama-3.2-3B-Instruct')
+model_name = os.environ.get('MODEL', 'unsloth/Llama-3.2-3B-Instruct')
 BASE = vars().get('BASE', './')
 save_dir = BASE + "finetuned_model"
 merged_save_dir = BASE + "merged_model_full"

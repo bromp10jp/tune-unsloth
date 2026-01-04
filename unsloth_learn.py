@@ -1,12 +1,13 @@
+import os
 import torch
 from datasets import load_dataset
 from unsloth import FastLanguageModel
 from trl import SFTTrainer, SFTConfig
 
 max_seq_length = 2048 # シーケンス長を設定
-model_name = vars().get('MODEL', 'unsloth/Llama-3.2-3B-Instruct')
+model_name = os.environ.get('MODEL', 'unsloth/Llama-3.2-3B-Instruct')
+TUNE_DATA_FILE = os.environ.get('TUNE_DATA_FILE', 'sample_dataset.jsonl')
 BASE = vars().get('BASE', './')
-TUNE_DATA_FILE = vars().get('TUNE_DATA_FILE', 'sample_dataset.jsonl')
 DATA_FILE = BASE + TUNE_DATA_FILE
 save_dir = BASE + "finetuned_model"
 
@@ -78,7 +79,7 @@ trainer = SFTTrainer(
 
         # 最適化設定
         learning_rate = 2e-4,           # 学習率
-        logging_steps = 2,             # ログ出力頻度
+        logging_steps = 10,             # ログ出力頻度
         optim = "adamw_8bit",           # 8ビットAdamWオプティマイザを使用
         lr_scheduler_type = "cosine",   # 学習率スケジューラー(指定しないとlinear)
 
