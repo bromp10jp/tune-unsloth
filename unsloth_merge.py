@@ -28,6 +28,7 @@ model_16bit, tokenizer_16bit = FastLanguageModel.from_pretrained(
     max_seq_length = 2048,
     dtype = compute_dtype,
     load_in_4bit = False,  # 重要: Falseに設定
+    #device_map="cpu",      # CPUにロード
 )
 print("ベースモデル読み込み完了")
 

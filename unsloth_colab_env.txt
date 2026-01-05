@@ -1,7 +1,7 @@
 import os
 from google.colab import drive
 
-os.environ["TUNE_DATA_FILE"] = "sample_dataset.jsonl"
+os.environ["TUNE_DATA_FILE"] = "nagasakiben.jsonl"
 os.environ["MODEL"] = "unsloth/Llama-3.2-3B-Instruct"
 #os.environ["MODEL"] = "unsloth/Llama-3.1-8B-Instruct"
 #os.environ["MODEL"] = "meta-llama/Llama-3.2-3B-Instruct"  # こちらはMeta公式モデル（要HuggingFaceアカウント承認）
