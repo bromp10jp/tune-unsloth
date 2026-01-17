@@ -49,12 +49,12 @@ pip install -U -r requirements.txt
 deactivate
 
 cd $HOME
+git clone https://github.com/ggml-org/llama.cpp
+cd llama.cpp
 python3 -m venv venv_llamacpp
 source venv_llamacpp/bin/activate
 pip install -U pip
 pip install awscli
-git clone https://github.com/ggml-org/llama.cpp
-cd llama.cpp
 pip install -r requirements.txt
 sudo apt install -y git cmake build-essential ninja-build libcurl4-openssl-dev
 cmake -B build -DLLAMA_BUILD_SERVER=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_TESTS=OFF
