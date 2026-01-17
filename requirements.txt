@@ -6,5 +6,4 @@ pillow
 timm
 huggingface_hub
 bitsandbytes
-unsloth @ git+https://github.com/unslothai/unsloth.git
-unsloth_zoo @ git+https://github.com/unslothai/unsloth_zoo.git
+unsloth
