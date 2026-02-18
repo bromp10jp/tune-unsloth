@@ -17,25 +17,11 @@ crontab tempcron
 
 curl -fsSL https://ollama.com/install.sh | sh
 
-OVERRIDE_DIR=/etc/systemd/system/ollama.service.d
-mkdir -p ${OVERRIDE_DIR}
-cat > ${OVERRIDE_DIR}/override.conf <<EOF
-[Service]
-Environment="OLLAMA_CONTEXT_LENGTH=16384"
-Environment="OLLAMA_HOST=0.0.0.0:8080"
-Environment="OLLAMA_ORIGINS=*"
-EOF
-
 cat > /tmp/commandfile <<EOF
 cd $HOME
-echo "export OLLAMA_HOST=0.0.0.0:8080" >> .bashrc
 echo "export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True" >> .bashrc
-echo "export TUNE_DATA_FILE=nagasakiben.jsonl" >> .bashrc
+echo "export TUNE_DATASET=sample_dataset.jsonl" >> .bashrc
 echo "export MODEL=unsloth/Llama-3.2-3B-Instruct" >> .bashrc
-sudo systemctl daemon-reload
-#sudo systemctl enable ollama
-#sudo systemctl restart ollama
-sudo systemctl stop ollama
 
 cd $HOME
 python3 -m venv venv
@@ -62,11 +48,9 @@ cmake --build build -j4 --target llama-quantize
 #cd ~/tune-unsloth
 #python ../llama.cpp/convert_hf_to_gguf.py ./merged_model_full --outfile model-f16.gguf --outtype f16
 #~/llama.cpp/build/bin/llama-quantize ./model-f16.gguf ./model-q4_k_m.gguf Q4_K_M
-#aws s3 cp ./model-q4_k_m.gguf s3://edu2-oregon-up/
 deactivate
 
 EOF
 su - -c "(cp /tmp/commandfile ~/.;bash ~/commandfile)" ubuntu
 
 echo "UserData Completed."
-
