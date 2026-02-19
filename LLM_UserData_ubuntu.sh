@@ -16,6 +16,8 @@ echo '0 3 * * * /sbin/shutdown -h now' >> tempcron
 crontab tempcron
 
 curl -fsSL https://ollama.com/install.sh | sh
+systemctl enable ollama
+systemctl start ollama
 
 cat > /tmp/commandfile <<EOF
 cd $HOME
