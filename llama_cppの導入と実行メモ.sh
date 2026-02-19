@@ -21,4 +21,4 @@ cmake --build build -j4 --target llama-quantize
 ~/llama.cpp/build/bin/llama-quantize ./model-f16.gguf ./model-q4_k_m.gguf Q4_K_M
 
 # Ollamaのモデルデプロイ
-ollama create my/model-q4 -f Modelfile
+ollama create my/model-q4 -f Modelfile.txt
