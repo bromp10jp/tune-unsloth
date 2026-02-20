@@ -1,8 +1,8 @@
 # llama.cpp リポジトリ取得
 git clone https://github.com/ggml-org/llama.cpp
-cd llama.cpp
 
 # 1) 依存関係インストール
+cd llama.cpp
 python3 -m venv venv_llamacpp
 source venv_llamacpp/bin/activate
 pip install -U pip
@@ -21,4 +21,4 @@ cmake --build build -j4 --target llama-quantize
 ~/llama.cpp/build/bin/llama-quantize ./model-f16.gguf ./model-q4_k_m.gguf Q4_K_M
 
 # Ollamaのモデルデプロイ
-ollama create my/model-q4 -f Modelfile.txt
+ollama create llama-new3b-q4 -f Modelfile.txt
