@@ -7,4 +7,3 @@ timm
 huggingface_hub
 bitsandbytes
 unsloth
-unsloth_zoo
